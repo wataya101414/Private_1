@@ -3,7 +3,7 @@
 -- Connection credentials are intentionally not stored in this repository.
 
 CREATE TABLE categories (
-  id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   code VARCHAR(32) NOT NULL,
   name VARCHAR(50) NOT NULL,
   display_order SMALLINT UNSIGNED NOT NULL DEFAULT 0,
