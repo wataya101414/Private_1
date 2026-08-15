@@ -30,7 +30,7 @@ public class InventoryService {
         if (itemRepository.existsByCategoryIdAndName(category.getId(), name)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "同じカテゴリに同名の在庫があります。");
         }
-        InventoryItem item = new InventoryItem(category, name, request.quantity(), request.unit().trim(), request.emoji(), 0);
+        InventoryItem item = new InventoryItem(category, name, request.quantity(), request.unit().trim(), request.emoji(), (short)0);
         return toResponse(itemRepository.save(item));
     }
     @Transactional
