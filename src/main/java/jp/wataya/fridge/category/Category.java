@@ -8,7 +8,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Byte id;
+    private Long id;
 
     @Column(nullable = false, unique = true, length = 32)
     private String code;
@@ -22,7 +22,7 @@ public class Category {
     protected Category() {
     }
 
-    public Byte getId() {
+    public Long getId() {
         return id;
     }
 
