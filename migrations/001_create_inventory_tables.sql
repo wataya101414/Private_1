@@ -15,7 +15,6 @@ CREATE TABLE categories (
 CREATE TABLE inventory_items (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 
-  -- ここを TINYINT → BIGINT に変更
   category_id BIGINT UNSIGNED NOT NULL,
 
   name VARCHAR(100) NOT NULL,
