@@ -20,10 +20,10 @@ public class InventoryItem {
     @Column(length = 32)
     private String emoji;
     @Column(name = "display_order", nullable = false)
-    private int displayOrder;
+    private short displayOrder;
 
     protected InventoryItem() { }
-    public InventoryItem(Category category, String name, int quantity, String unit, String emoji, int displayOrder) {
+    public InventoryItem(Category category, String name, int quantity, String unit, String emoji, short displayOrder) {
         this.category = category; this.name = name; this.quantity = quantity; this.unit = unit; this.emoji = emoji; this.displayOrder = displayOrder;
     }
     public void changeQuantityBy(int delta) { quantity = Math.max(0, quantity + delta); }
@@ -33,5 +33,5 @@ public class InventoryItem {
     public int getQuantity() { return quantity; }
     public String getUnit() { return unit; }
     public String getEmoji() { return emoji; }
-    public int getDisplayOrder() { return displayOrder; }
+    public short getDisplayOrder() { return displayOrder; }
 }
