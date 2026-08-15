@@ -4,11 +4,12 @@ const dialog = document.querySelector("#item-dialog");
 const form = document.querySelector("#item-form");
 const toast = document.querySelector("#toast");
 let toastTimer;
+const apiBaseUrl = (window.APP_CONFIG?.API_BASE_URL || "").replace(/\/$/, "");
 const icons = { seasoning: "♨", food: "♧" };
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" })[char]);
 
 async function request(url, options = {}) {
-  const response = await fetch(url, { headers: { "Content-Type": "application/json" }, ...options });
+  const response = await fetch(`${apiBaseUrl}${url}`, { headers: { "Content-Type": "application/json" }, ...options });
   if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.message || "操作に失敗しました。"); }
   return response.status === 204 ? null : response.json();
 }
