@@ -17,7 +17,7 @@ public class Category {
     private String name;
 
     @Column(name = "display_order", nullable = false)
-    private int displayOrder;
+    private short displayOrder;
 
     protected Category() {
     }
@@ -34,7 +34,7 @@ public class Category {
         return name;
     }
 
-    public int getDisplayOrder() {
+    public short getDisplayOrder() {
         return displayOrder;
     }
 }
