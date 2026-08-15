@@ -1,7 +1,3 @@
--- MySQL 8.0+
--- Run this migration against the private_1_db database.
--- Connection credentials are intentionally not stored in this repository.
-
 CREATE TABLE categories (
   id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
   code VARCHAR(32) NOT NULL,
@@ -11,9 +7,7 @@ CREATE TABLE categories (
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_categories_code (code)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE inventory_items (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -26,20 +20,13 @@ CREATE TABLE inventory_items (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  CONSTRAINT fk_inventory_items_category
-    FOREIGN KEY (category_id) REFERENCES categories (id)
-    ON UPDATE CASCADE
-    ON DELETE RESTRICT,
+  CONSTRAINT fk_inventory_items_category FOREIGN KEY (category_id) REFERENCES categories (id) ON UPDATE CASCADE ON DELETE RESTRICT,
   UNIQUE KEY uq_inventory_items_category_name (category_id, name),
   KEY idx_inventory_items_category_display (category_id, display_order, id)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO categories (code, name, display_order)
-VALUES
-  ('seasoning', '調味料', 1),
-  ('food', '食材', 2);
+VALUES ('seasoning', '調味料', 1), ('food', '食材', 2);
 
 INSERT INTO inventory_items (category_id, name, quantity, unit, emoji, display_order)
 SELECT id, 'マヨネーズ', 1, '個', '🥚', 1 FROM categories WHERE code = 'seasoning';
